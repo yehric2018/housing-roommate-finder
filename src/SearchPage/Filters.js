@@ -1,14 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 
-function Filters() {
-    function handleSubmit() {
-        console.log('clicked on submit filters');
+function Filters({setAllListings}) {
+    async function handleSubmit() {
+        const url = '/housing';
+        await fetch(url)
+            .then(response => response.json(),
+                error => console.log('An error occurred: ', error))
+            .then(json => setAllListings(json));
     }
 
+/*    useEffect(handleSubmit, []);
+*/
     return (
         <Container>
             <h3>Filters</h3>

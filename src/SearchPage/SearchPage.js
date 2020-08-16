@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -7,19 +7,20 @@ import Filters from './Filters';
 import Listings from './Listings';
 import NavBar from '../Common/NavBar';
 
-
-function SearchPage(props) {
-    console.log(props.location.state)
-    return (
+function SearchPage() {
+    const [allListings, setAllListings] = useState('');
+    console.log('listings:' + allListings);
+/*    console.log(props.location.state)
+*/    return (
         <div>
             <NavBar />
             <Container className='mt-5'>
                 <Row>
                     <Col md={4}>
-                        <Filters />
+                        <Filters setAllListings={setAllListings} />
                     </Col>
                     <Col md={8}>
-                        <Listings />
+                        <Listings allListings={allListings} />
                     </Col>
                 </Row>
             </Container>
@@ -28,3 +29,4 @@ function SearchPage(props) {
 }
 
 export default SearchPage;
+

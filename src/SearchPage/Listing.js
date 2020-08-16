@@ -2,8 +2,21 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Image from 'react-bootstrap/Image';
 
-function Listing() {
+function Listing({ title, description, price, location, length, squareFootage, roommateInfo}) {
+    function listRoomates() {
+        if (roommateInfo === undefined) {
+            return null;
+        } else {
+            roommateInfo.map((roommate) => {
+                return (
+                    <Image src={roommate.profileImage} roundedCircle />
+                );
+            })
+        }
+    }
+
     return (
         <Card>
             <Card.Body>
@@ -15,11 +28,37 @@ function Listing() {
                         />
                     </Col>
                     <Col>
-                        <Card.Title>Looking for another roommate!</Card.Title>
+                        <Card.Title>{title}</Card.Title>
                         <Card.Text className="text-left">
-                            I am looking for a second roommate for my apartment. Dryer and washer in-unit!
+                            {description}
                         </Card.Text>
                     </Col>
+                </Row>
+                <br />
+                <Row>
+                    <Col md={6}>
+                        <Card.Text className="text-left">
+                            {location}
+                        </Card.Text>
+                    </Col>
+                    <Col md={2}>
+                        <Card.Text className="text-left">
+                            ${price}
+                        </Card.Text>
+                    </Col>
+                    <Col md={2}>
+                        <Card.Text className="text-left">
+                            {length} months
+                        </Card.Text>
+                    </Col>
+                    <Col md={2}>
+                        <Card.Text className="text-left">
+                            {squareFootage} sqft
+                        </Card.Text>
+                    </Col>
+                </Row>
+                <Row>
+                    {listRoomates()}
                 </Row>
             </Card.Body>
         </Card>
