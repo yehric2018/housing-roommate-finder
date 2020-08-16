@@ -9,7 +9,6 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
-import Box from '@material-ui/core/Box';
 import { Link } from 'react-router-dom'
 
 class LandingPage extends React.Component{
