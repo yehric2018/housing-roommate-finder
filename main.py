@@ -1,9 +1,16 @@
 import time
-from flask import Flask, request, jsonify
+from flask import Flask, request, redirect, url_for
 from firebase import firebase
+
+import os
+import tempfile
+
 
 app = Flask(__name__, static_folder='./build', static_url_path='/')
 firebase = firebase.FirebaseApplication("https://housing-roommate-finder-286520.firebaseio.com/", None)
+
+UPLOAD_FOLDER = './img'
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 @app.route('/')
 def get_html():
@@ -12,6 +19,22 @@ def get_html():
 @app.route('/time')
 def get_current_time():
 	return {'time': time.time()}
+
+@app.route('/upload_image', methods=['POST'])
+def send_individual_picture():
+	if 'picture' not in request.files:
+		return {"error": "upload file not provided"}
+	picture = request.files['picture']
+	filename = picture.filename
+	picture.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+	return redirect(url_for('uploaded_file', filename=filename))
+	#picture = request.files['picture']
+
+	#temp = tempfile.NamedTemporaryFile(delete=False)
+	#picture.save(temp.name)
+	#firebase.storage().put(picture)
+
+	#os.remove(temp.name)
 
 @app.route('/add_listing')
 def add_listing():
