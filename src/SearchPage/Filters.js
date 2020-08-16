@@ -5,9 +5,9 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 
 
-async function Filters({setAllListings}) {
+function Filters({setAllListings}) {
     /*const handleSubmit = async () => {
-        const url = '/housing';
+        const url = 'localhost:5000/housing';
         return await fetch(url)
         .then(response => response.json(),
             error => console.log('An error occurred: ', error))
