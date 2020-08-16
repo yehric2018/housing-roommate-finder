@@ -77,19 +77,19 @@ def get_housing_info():
 	roommates = firebase.get('/roommates', None)
 
 	same_major = set()
-	for mate in roommates.values:
-		if mate.major == majors:
+	for k, mate in list(roommates.items()):
+		if mate.major and mate.major == majors:
 			same_major.add(mate.listing_id)
 
-	for listing in result.items:
-		if majors != "" and listing[0] not in same_major:
+	for k, v in list(result.items()):
+		if majors != "" and k not in same_major:
 			continue
-		if price != -1 and abs(price - listing[1].price) <= 200:
+		if price != -1 and abs(price - v.price) <= 200:
 			continue
-		if squareFootage != -1 and abs(squareFootage - listing[1].squareFootage) <= 200:
+		if squareFootage != -1 and abs(squareFootage - v.squareFootage) <= 200:
 			continue
-		if length != -1 and length != listing[1].length:
+		if length != -1 and length != v.length:
 			continue
-		listings.append(listing[1])
+		listings.append(v)
 
 	return listings
