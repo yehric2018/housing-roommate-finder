@@ -23,7 +23,6 @@ class Listings extends React.Component {
 
     render () {
         var allListings = this.state.listings
-		console.log("attempt 2");
         return (
             <div>
                 {

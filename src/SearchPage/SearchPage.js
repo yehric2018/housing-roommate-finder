@@ -8,13 +8,12 @@ import Listings from './Listings';
 import NavBar from '../Common/NavBar';
 
 
-function SearchPage() {
-	//const remoteName = useFetch();
+function SearchPage(props) {
     const [allListings, setAllListings] = useState({"listings": []});
-	// useEffect()
-    console.log('listings:' + allListings);
-/*    console.log(props.location.state)
-*/    return (
+    console.log('listings:')
+	console.log(allListings.listings);
+    console.log(props.location.state)
+    return (
         <div>
             <NavBar />
             <Container className='mt-5'>

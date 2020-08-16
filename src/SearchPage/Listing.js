@@ -4,7 +4,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 
-function Listing({ title, description, price, location, length, squareFootage, roommateInfo}) {
+function Listing(props/*{ title, description, price, location, length, squareFootage, roommateInfo}*/) {
+	const {title, description, price, location, length, squareFootage, roommateInfo} = props;
+	console.log("hello");
     function listRoomates() {
         if (roommateInfo === undefined) {
             return null;
