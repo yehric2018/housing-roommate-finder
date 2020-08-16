@@ -16,19 +16,19 @@ def get_current_time():
 @app.route('/add_listing')
 def add_listing():
 	description = request.args.get("desc", type=str)
-	major = request.args.get("length", type=int)
+	length = request.args.get("length", type=int)
 	location = request.args.get("loc", type=str)
 	price = request.args.get("price", type=int)
 	squareFootage = request.args.get("area", type=int)
 	title = request.args.get("title", type=str)
 
 	listing = {
-		"description": "Great amenities! You will be sharing a room with one other person!",
-		"length": 12,
-		"location": "4444 444th St Seattle, WA",
-		"price": 800,
-		"squareFootage": 700,
-		"title": "Looking for another roommate!"
+		"description": description,
+		"length": length,
+		"location": location,
+		"price": price,
+		"squareFootage": squareFootage,
+		"title": title
 	}
 
 	result = firebase.post('/listings', listing, {'print': 'pretty'}, {'X_FANCY_HEADER': 'VERY FANCY'})
