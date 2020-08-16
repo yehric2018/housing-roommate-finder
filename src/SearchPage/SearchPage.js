@@ -9,6 +9,7 @@ import NavBar from '../Common/NavBar';
 
 function SearchPage(props) {
     const [allListings, setAllListings] = useState('');
+    console.log(allListings);
     console.log(props.location.state)
     return (
         <div>

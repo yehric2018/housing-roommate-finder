@@ -13,7 +13,7 @@ function Filters({setAllListings}) {
             .then(json => setAllListings(json));
     }
 
-    useEffect(handleSubmit, []);
+    //useEffect(handleSubmit, []);
 
     return (
         <Container>

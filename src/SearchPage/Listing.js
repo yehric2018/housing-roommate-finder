@@ -17,6 +17,8 @@ function Listing({ title, description, price, location, length, squareFootage, r
         }
     }
 
+    console.log('AAAAAAAAAAAAAAAA')
+
     return (
         <Card>
             <Card.Body>
