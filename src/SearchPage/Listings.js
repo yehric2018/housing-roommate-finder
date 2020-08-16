@@ -2,25 +2,28 @@ import React from 'react';
 import Listing from './Listing';
 
 class Listings extends React.Component {
-    handleSubmit = async () => {
-        const url = '/housing';
-        return await fetch(url)
-        .then(response => response.json(),
-            error => console.log('An error occurred: ', error))
-        .then(json => json.listings);
-    }
-
     constructor(props) {
         super(props);
         this.state = {
             listings: []
         }
-        this.setState({listings : this.handleSubmit})
-    } 
+    }
+ 
+    handleSubmit = async () => {
+        const url = '/housing';
+        await fetch(url)
+        	.then(response => response.json(),
+            	error => console.log('An error occurred: ', error))
+			.then(json => this.setState({listings: json.listings}));
+    }
+
+	componentDidMount() {
+		this.handleSubmit();
+	}
 
     render () {
         var allListings = this.state.listings
-        console.log(allListings);
+		console.log("attempt 2");
         return (
             <div>
                 {
@@ -41,8 +44,7 @@ class Listings extends React.Component {
                                 <br />
                             </div>
                         );
-                    }) :
-                    null
+                    }) : <div/>
                 }
             </div>
         );
