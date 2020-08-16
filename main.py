@@ -1,5 +1,5 @@
 import time
-from flask import Flask, request, redirect, url_for
+from flask import Flask, request, redirect, url_for, send_from_directory
 from firebase import firebase
 
 import os
@@ -28,13 +28,10 @@ def send_individual_picture():
 	filename = picture.filename
 	picture.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
 	return redirect(url_for('uploaded_file', filename=filename))
-	#picture = request.files['picture']
 
-	#temp = tempfile.NamedTemporaryFile(delete=False)
-	#picture.save(temp.name)
-	#firebase.storage().put(picture)
-
-	#os.remove(temp.name)
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+	return send_from_directory(app.config["UPLOAD_FOLDER"], filename)
 
 @app.route('/add_listing')
 def add_listing():
@@ -101,7 +98,7 @@ def get_housing_info():
 
 	same_major = set()
 	for k, mate in list(roommates.items()):
-		if mate.major and mate.major == majors:
+		if "major" in mate and mate["major"] == majors:
 			same_major.add(mate.listing_id)
 
 	for k, v in list(result.items()):
@@ -115,4 +112,4 @@ def get_housing_info():
 			continue
 		listings.append(v)
 
-	return listings
+	return {"listings": listings}
