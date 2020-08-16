@@ -9,88 +9,108 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
-import Box from '@material-ui/core/Box';
+import { Link } from 'react-router-dom'
 
+class LandingPage extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            location: "Ballard",
+            roommates: 2,
+            price: 500
+        }
+        this.valuetext = this.valuetext.bind(this)
+        this.handleLocChange = this.handleLocChange.bind(this)
+        this.handleRoomChange = this.handleRoomChange.bind(this)
+        this.handlePriceChange = this.handlePriceChange.bind(this)
+    }
 
-function valuetext(value) {
-    return `${value}`;
-}
+    valuetext(value) {
+        return `${value}`;
+    }
 
-export default function LandingPage() {
-    const [valueRoommate, setValueRoommate] = React.useState([0, 5]);
-    const [valuePrice, setValuePrice] = React.useState([500, 2000]);
+    handleLocChange = e => {
+        this.setState({location: e.target.value})
+    }
 
-    const handleRoommateChange = (event, newValue) => {
-        setValueRoommate(newValue);
-    };
+    handleRoomChange = (e, val) => {
+        this.setState({roommates: val})
+    }
 
-    const handlePriceChange = (event, newValue) => {
-        setValuePrice(newValue);
-    };
+    handlePriceChange = (e, val) => {
+        this.setState({price: val})
+    }
 
-    return (
-        <div>
-            <NavBar />
-            <Container className="landingImage" fluid>
-                <Container>
-                    <h1 className="landingWelcome">Choose Your Home!</h1>
-                </Container>
-                <Container className="landingSearch">
-                    <Row>
-                        <Col>
-                            <Form.Group controlId="exampleForm.ControlSelect1">
-                                <Form.Label>Location </Form.Label>
-                                <Form.Control as="select">
-                                    <option>Ballard</option>
-                                    <option>Capitol Hill</option>
-                                    <option>Greenwood</option>
-                                    <option>Northgate</option>
-                                    <option>University District</option>
-                                </Form.Control>
-                            </Form.Group>
-                        </Col>
-                        <Col>
-                            <Typography id="range-slider" gutterBottom>
-                                Number of Roommates
+    render() {
+        return (
+            <div>
+                <NavBar />
+                <Container className="landingImage" fluid>
+                    <Container>
+                        <h1 className="landingWelcome">Choose Your Home!</h1>
+                    </Container>
+                    <Container className="landingSearch">
+                        <Row>
+                            <Col>
+                                <Form.Group controlId="exampleForm.ControlSelect1">
+                                    <Form.Label>Location </Form.Label>
+                                    <Form.Control as="select" onChange={this.handleLocChange}>
+                                        <option>Ballard</option>
+                                        <option>Capitol Hill</option>
+                                        <option>Greenwood</option>
+                                        <option>Northgate</option>
+                                        <option>University District</option>
+                                    </Form.Control>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Typography id="discrete-slider" gutterBottom>
+                                    Number of Roommates
                                 </Typography>
-                            <Box className="landingSlider">
                                 <Slider
-                                    value={valueRoommate}
-                                    onChange={handleRoommateChange}
+                                    defaultValue={2}
+                                    getAriaValueText={this.valuetext}
+                                    aria-labelledby="discrete-slider"
                                     valueLabelDisplay="auto"
-                                    aria-labelledby="range-slider"
-                                    getAriaValueText={valuetext}
+                                    step={1}
+                                    marks
                                     min={0}
                                     max={5}
+                                    className="landingSlider"
+                                    onChangeCommitted={this.handleRoomChange}
                                 />
-                            </Box>
-                        </Col>
-                        <Col>
-                            <Typography id="range-slider" gutterBottom>
-                                Price
+                            </Col>
+                            <Col>
+                                <Typography id="discrete-slider" gutterBottom>
+                                    Price
                                 </Typography>
-                            <Box className="landingSlider">
                                 <Slider
-                                    value={valuePrice}
-                                    onChange={handlePriceChange}
+                                    defaultValue={500}
+                                    getAriaValueText={this.valuetext}
+                                    aria-labelledby="discrete-slider"
                                     valueLabelDisplay="auto"
-                                    aria-labelledby="range-slider"
-                                    getAriaValueText={valuetext}
+                                    step={100}
+                                    marks
                                     min={500}
                                     max={2000}
-                                    step={100}
+                                    className="landingSlider"
+                                    onChangeCommitted={this.handlePriceChange}
                                 />
-                            </Box>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Button variant="primary">Search</Button>{' '}
-                        </Col>
-                    </Row>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Link to={{
+                                    pathname:"/Search", 
+                                    state: {location: this.state.location, roommates: this.state.roommates, price: this.state.price}
+                                    }}>Search</Link>
+                            </Col>
+                        </Row>
+                    </Container>
                 </Container>
-            </Container>
-        </div>
-    )
+            </div>
+        )
+    }
 }
 
+export default LandingPage

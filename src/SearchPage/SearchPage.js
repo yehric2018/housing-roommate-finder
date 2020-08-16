@@ -7,8 +7,9 @@ import Filters from './Filters';
 import Listings from './Listings';
 import NavBar from '../Common/NavBar';
 
-function SearchPage() {
+function SearchPage(props) {
     const [allListings, setAllListings] = useState('');
+    console.log(props.location.state)
     return (
         <div>
             <NavBar />

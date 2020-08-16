@@ -10,7 +10,7 @@ function NavBar() {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/add">Add a Listing</Nav.Link>
+                    <Nav.Link href="/AddListing">Add a Listing</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
