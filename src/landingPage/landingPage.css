@@ -1,0 +1,35 @@
+.landingImage {
+    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("https://cdn.vox-cdn.com/thumbor/eI0XjF_1tE962Ch4oh5401p97RM=/1400x0/filters:no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/13600627/shutterstock_1144300976.jpg");
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.landingWelcome {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 10%;
+}
+
+.landingSlider {
+    padding-top: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: #FFFFFF;
+    border-color: lightgrey;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+}
+
+.landingSearch {
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    background: #FFFFFF;
+    border-color: lightgrey;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+}
+
+
