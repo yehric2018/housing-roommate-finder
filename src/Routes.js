@@ -11,9 +11,9 @@ export default class Routes extends Component {
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route path="/" exact component={LandingPage} />
-                    <Route path="/AddListing" component={AddListingPage} />
-                    <Route path="/Search" component={SearchPage} />
+                    <Route path="/" exact><LandingPage /></Route>
+                    <Route path="/AddListing" exact><AddListingPage /></Route>
+                    <Route path="/Search" exact><SearchPage /></Route>
                 </Switch>
             </BrowserRouter>
         )

@@ -4,17 +4,22 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 
-function Filters({setAllListings}) {
-    async function handleSubmit() {
-        const url = '/housing';
-        await fetch(url)
-            .then(response => response.json(),
-                error => console.log('An error occurred: ', error))
-            .then(json => setAllListings(json));
-    }
 
-/*    useEffect(handleSubmit, []);
-*/
+async function Filters({setAllListings}) {
+    /*const handleSubmit = async () => {
+        const url = '/housing';
+        return await fetch(url)
+        .then(response => response.json(),
+            error => console.log('An error occurred: ', error))
+        .then(json => json);
+    }*/
+
+    /*var temp = await handleSubmit();
+    console.log(temp);
+    setAllListings(temp)*/
+
+    //useEffect(await handleSubmit, []);
+
     return (
         <Container>
             <h3>Filters</h3>
@@ -66,7 +71,7 @@ function Filters({setAllListings}) {
                     </Form.Control>
                 </Form.Group>
             </Form>
-            <Button variant="primary" onClick={() => handleSubmit() }>Search</Button>{' '}
+            <Button variant="primary">Search</Button>{' '}
         </Container>
     );
 }
