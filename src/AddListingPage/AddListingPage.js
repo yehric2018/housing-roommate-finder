@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
-import { FormGroup } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function AddListingPage() {
     const [roommateCount, setRoommateCount] = useState(5);
@@ -205,6 +205,7 @@ function RoommateInfo({roommateNum}) {
                     </Form.File>
                 </Col>
             </Form.Group>
+        </div>
     );
 }
 
