@@ -4,10 +4,12 @@ import AddListingPage from './AddListingPage/AddListingPage';
 import LandingPage from './landingPage/landingPage';
 import Routes from './Routes'
 
+
 function App() {
   return (
       <div className="App">
           <Routes />
+          <LandingPage />
     </div>
   );
 }
