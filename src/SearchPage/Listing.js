@@ -7,7 +7,6 @@ function Listing() {
     return (
         <Card>
             <Card.Body>
-                <Card.Title>Looking for another roommate!</Card.Title>
                 <Row>
                     <Col>
                         <Card.Img
@@ -16,7 +15,8 @@ function Listing() {
                         />
                     </Col>
                     <Col>
-                        <Card.Text>
+                        <Card.Title>Looking for another roommate!</Card.Title>
+                        <Card.Text className="text-left">
                             I am looking for a second roommate for my apartment. Dryer and washer in-unit!
                         </Card.Text>
                     </Col>
