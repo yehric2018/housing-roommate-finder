@@ -22,6 +22,10 @@ def add_listing():
 	squareFootage = request.args.get("area", type=int)
 	title = request.args.get("title", type=str)
 
+	if (not description or not length or not location or not price
+			or not squareFootage or not title):
+		return {"error": "one or more attributes missing"}
+
 	listing = {
 		"description": description,
 		"length": length,
@@ -39,17 +43,20 @@ def add_roommate():
 	name = request.args.get('name', type=str)
 	major = request.args.get('major', type=str)
 	profileImage = request.args.get('img', type=str)
-	#sleepStart = request.args.get('sleepStart', type=str)
-	#sleepEnd = request.args.get('sleepEnd', type=str)
 	sleepSchedule = request.args.get('sleep', type=str)
-	habits = request.args.get('habits', type=str).split(",")
+	habits = request.args.get('habits', type=str)
 	room_id = request.args.get('room_id', type=str)
+	
+	if (not name or not major or not profileImage or not sleepSchedule or
+		not habits or not room_id):
+		return {"error": "one or more attributes missing"}
+
 	roommate = {
 		"name": name,
 		"major": major,
 		"profileImage": profileImage,
 		"sleepSchedule": sleepSchedule,
-		"habits": habits,
+		"habits": habits.split(","),
 		"listing_id": room_id
 	}
 	result = firebase.post("/roommates", roommate, {'print': 'pretty'}, {'X_FANCY_HEADER': 'VERY FANCY'})
@@ -64,4 +71,4 @@ def get_housing_info():
 	majors = request.args.get('majors', type=str)
 
 	result = firebase.get('/listings', None)
-	return str(result).replace("'", "\"")
+	return result
