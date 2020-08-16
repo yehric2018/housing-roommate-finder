@@ -24,8 +24,9 @@ class Listings extends React.Component {
         return (
             <div>
                 {
-                    allListings.listings !== undefined && allListings.listings !== "" ?
-                    allListings.listings.map((listing) => {
+                    allListings !== undefined && allListings !== "" ?
+                    allListings.map((listing) => {
+						console.log(listing);
                         return (
                             <div>
                                 <Listing

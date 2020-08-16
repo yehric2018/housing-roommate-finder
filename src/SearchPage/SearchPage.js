@@ -9,7 +9,9 @@ import NavBar from '../Common/NavBar';
 
 
 function SearchPage() {
-    const [allListings, setAllListings] = useState({"listings" : []});
+	//const remoteName = useFetch();
+    const [allListings, setAllListings] = useState({"listings": []});
+	// useEffect()
     console.log('listings:' + allListings);
 /*    console.log(props.location.state)
 */    return (
