@@ -39,15 +39,16 @@ def add_roommate():
 	name = request.args.get('name', type=str)
 	major = request.args.get('major', type=str)
 	profileImage = request.args.get('img', type=str)
-	sleepStart = request.args.get('sleepStart', type=str)
-	sleepEnd = request.args.get('sleepEnd', type=str)
+	#sleepStart = request.args.get('sleepStart', type=str)
+	#sleepEnd = request.args.get('sleepEnd', type=str)
+	sleepSchedule = request.args.get('sleep', type=str)
 	habits = request.args.get('habits', type=str).split(",")
 	room_id = request.args.get('room_id', type=str)
 	roommate = {
 		"name": name,
 		"major": major,
 		"profileImage": profileImage,
-		"sleepSchedule": {"start": sleepStart, "end": sleepEnd},
+		"sleepSchedule": sleepSchedule,
 		"habits": habits,
 		"listing_id": room_id
 	}
@@ -56,5 +57,11 @@ def add_roommate():
 
 @app.route('/housing', methods=["GET"])
 def get_housing_info():
+	location = request.args.get('loc', type=str)
+	price = request.args.get('price', type=int)
+	length = request.args.get('length', type=int)
+	squareFootage = request.args.get('area', type=int)
+	majors = request.args.get('majors', type=str)
+
 	result = firebase.get('/listings', None)
-	return str(result)
+	return str(result).replace("'", "\"")
