@@ -9,10 +9,10 @@ import NavBar from '../Common/NavBar';
 
 
 function SearchPage(props) {
+    console.log("landing", props.location.state)
     const [allListings, setAllListings] = useState({"listings": []});
     console.log('listings:')
 	console.log(allListings.listings);
-    console.log(props.location.state)
     return (
         <div>
             <NavBar />

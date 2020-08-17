@@ -13,7 +13,7 @@ export default class Routes extends Component {
                 <Switch>
                     <Route path="/" exact><LandingPage /></Route>
                     <Route path="/AddListing" exact><AddListingPage /></Route>
-                    <Route path="/Search" exact><SearchPage /></Route>
+                    <Route path="/Search" render={(props) => <SearchPage {...props} />} />
                 </Switch>
             </BrowserRouter>
         )
